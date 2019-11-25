@@ -2,6 +2,9 @@
 
 In the top_int.py file you will need to update the scrutinizer_requester() with the hostname of your scrutinizer as well as a value auth token. 
 
+## Running the Script 
+
+After updating the Script with your hostname and API key it can be run fromt he command line with '*python top_int.py*', this Script does use python3, so you may need to specify the version. 
 
 ## Filtering the Data  
 
