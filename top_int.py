@@ -14,8 +14,8 @@ def remove_tags(text):
 
 # Update with your Scrutinizer Information
 scrutinizer_requester = Requester(
-    authToken="sCkShm_CGY7n924doKFdwYQg",
-    hostname="scrutinizer.plxr.local/"
+    authToken="Your Auth TOken",
+    hostname="Your Scrutinizer"
 )
 report_params = ReportAPI()
 
