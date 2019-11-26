@@ -70,5 +70,5 @@ The variable names are:
         "outbound_bits_second": "Rate: 4.38 Mb/s"}]} 
 ```
 
-##Output as Pytel 
+## Output as Pytel 
 ![pyteloutput](./pytel.png)
