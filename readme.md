@@ -37,9 +37,18 @@ All three of these would do the exact same thing. Specify the values in the meth
 
 ## Data Returned 
 
-There is a **dictionary_of_devices** that is set up in this file. That will hold all of that data, for now the script just prints that out at the end, but a flask app could be a potential endpoint that is hit at regular intervals to send the data back as JSON. 
+The data is stored in two variables shown below. One is a standard python dictionary, the other uses the pytel library to make viewing and editing the data easier. 
 
-## Data output
+The variable names are:
+
+
+**dictionary_of_devices**  
+
+
+**scrutinizer_table_petl**
+
+
+## Output as Dictionary
 ```json
 {"PLXRCORE-R1.plxr.local": {
     "time": "2019-11-25 10:44", 
@@ -61,3 +70,5 @@ There is a **dictionary_of_devices** that is set up in this file. That will hold
         "outbound_bits_second": "Rate: 4.38 Mb/s"}]} 
 ```
 
+##Output as Pytel 
+![pyteloutput](./pytel.png)

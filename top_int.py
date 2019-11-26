@@ -14,8 +14,8 @@ def remove_tags(text):
 
 # Update with your Scrutinizer Information
 scrutinizer_requester = Requester(
-    authToken="Your Auth TOken",
-    hostname="Your Scrutinizer"
+    authToken="Your Auth Token",
+    hostname="Your Scrutinizer Host Name"
 )
 report_params = ReportAPI()
 
@@ -109,6 +109,6 @@ for item in dictionary_of_devices:
         list_of_data.append(new_dict)
 
 #creates the petl table
-scrutinizer_table_petl = etl.fromdicts(list_of_data, header=['exporter_name', 'time', 'device_ip','interface_name','inbound_int_speed','inbound_percent',  'inbound_bits', 'outbound_int_speed',  'outbound_percent', 'outbound_bits_second' ])
+scrutinizer_table_petl = etl.fromdicts(list_of_data)
 
 print(scrutinizer_table_petl)
