@@ -4,7 +4,7 @@ from scrut_api import ReportAPI, Requester, ScrutPrint
 import json
 import csv
 import re
-
+import petl as etl
 
 #some of the data comes back with HTML tages, use this reg-ex to remove them. 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -14,8 +14,8 @@ def remove_tags(text):
 
 # Update with your Scrutinizer Information
 scrutinizer_requester = Requester(
-    authToken="your_api_key",
-    hostname="your_scrutinize_ip"
+    authToken="sCkShm_CGY7n924doKFdwYQg",
+    hostname="scrutinizer.plxr.local/"
 )
 report_params = ReportAPI()
 
@@ -89,10 +89,26 @@ for interface in int_data['rows']:
     else:
         dictionary_of_devices.update(device_to_add)
 
+## converting the dictionary I create when iterating through returned JSON into a list of dictionaries that was a bit easier to parse in petl.
 
 
-print(dictionary_of_devices)
+list_of_data = []
+for item in dictionary_of_devices:
+    for interface in dictionary_of_devices[item]['interfaces']:
+        new_dict = {
+            'exporter_name': item,
+            'time': dictionary_of_devices[item]['time'],
+            'device_ip': dictionary_of_devices[item]['device_ip'],
+            'interface_name': interface['interface_name'],
+            'inbound_int_speed': interface['inbound_int_speed'],
+            'inbound_percent': interface['inbound_percent'],
+            'inbound_bits': interface['inbound_bits'],
+            'outbound_int_speed': interface['outbound_int_speed'],
+            'outbound_percent': interface['outbound_percent'],
+            'outbound_bits_second': interface['outbound_bits_second']}
+        list_of_data.append(new_dict)
 
+#creates the petl table
+scrutinizer_table_petl = etl.fromdicts(list_of_data, header=['exporter_name', 'time', 'device_ip','interface_name','inbound_int_speed','inbound_percent',  'inbound_bits', 'outbound_int_speed',  'outbound_percent', 'outbound_bits_second' ])
 
-
-
+print(scrutinizer_table_petl)
